@@ -9,13 +9,17 @@ void		mandelbrot(t_all *all)
 	int i;
 	int x;
 	int y;
+	int r;
+	int g;
+	int b;
+
 	int color;
 
 	y = 0;
 	// if (all->data.zoom == 1)
 	// {
 	// 	printf("keycode = 4\n");
-	// 	all->fractol.zoom *= pow(1.001, 40); 
+		// all->fractol.zoom *= pow(1.001, 40); 
 	// }
 	// else if (all->data.zoom == 2)
 	// {
@@ -44,7 +48,21 @@ void		mandelbrot(t_all *all)
 			}
 			// printf("%f %f\n", all->fractol.new_re, all->fractol.new_im);
 			color = create_trgb(i % 256, 255, 255 * (i < 500));
-			my_mlx_pixel_put(&all->data, x, y, i);
+			// color = HSVtoRGB(rgb_to_hsv(i % 256, 255, 255 * (i < max_iterations)));
+			// HSVtoRGB(i % 256, 255, 255 * (i  < max_iterations), all);
+			// color = create_trgb(all->fractol.r, all->fractol.g, all->fractol.b);
+			// my_mlx_pixel_put(&all->data, x, y, color);
+			// r = 9 * (1 - i) * pow(i, 3) * 255;
+			// g = 15 * pow((1 - i), 2) * pow(i, 2) * 255;
+			// b = 8.5 * pow((1 - i), 3) * i * 255;
+
+			//very colorful shite
+			r = (114-151) * (i - 900) + 151;
+			g = (127-206) * (i  - 100) + 206;
+			b = (157-255) * (i - 500) + 255;
+			color = create_trgb(r, g, b);
+			// color = create_trgb(i % 256, 255, 255 * (i < 500));
+			my_mlx_pixel_put(&all->data, x, y, color);
 			x++;
 		}
 		y++;

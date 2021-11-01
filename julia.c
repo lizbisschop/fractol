@@ -39,9 +39,13 @@ void       julia(t_all *all)
                 // r = 9 * (1 - i) * pow(i, 3) * 255;
                 // g = 15 * pow((1 - i), 2) * pow(i, 2) * 255;
                 // b = 8.5 * pow((1 - i), 3) * i * 255;
-                // color = create_trgb(r, g, b);
-                color = create_trgb(i % 256, 255, 255 * (i < 500));
-                my_mlx_pixel_put(&all->data, x, y, i);
+                //very colorfull shite
+                r = (114-151) * (i - 50) + 151;
+			    g = (127-206) * (i  - 50) + 206;
+			    b = (157-255) * (i - 50) + 255;
+                color = create_trgb(r, g, b);
+                // color = create_trgb(i % 256, 255, 255 * (i < 500));
+                my_mlx_pixel_put(&all->data, x, y, color);
                 x++;
             }
             y++;

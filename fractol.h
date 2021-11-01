@@ -33,6 +33,10 @@ typedef struct s_fractol {
 	double zoom;
 	double move_x;
 	double move_y;
+	int	r;
+	int g;
+	int b;
+
 
 }				t_fractol;
 
@@ -50,5 +54,10 @@ void    mandelbrot(t_all *all);
 int      close_window(int keycode, t_data *data);
 void        exit_program(char *str);
 void		set_structs(t_all *all);
+
+
+////
+void HSVtoRGB(float H, float S,float V, t_all *all);
+int rgb_to_hsv(float r, float g, float b);
 
 #endif
