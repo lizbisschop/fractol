@@ -6,13 +6,14 @@
 #    By: lbisscho <lbisscho@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/22 08:46:37 by lbisscho      #+#    #+#                  #
-#    Updated: 2021/10/28 15:33:16 by lbisscho      ########   odam.nl          #
+#    Updated: 2021/11/01 15:14:38 by lbisscho      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRCS = main.c pixel_put.c which_fractol.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c julia.c mandelbrot.c
+SRCS = main.c pixel_put.c which_fractol.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c julia.c mandelbrot.c exit.c \
+		set_structs.c
 
 HEADERS = -I fractol.h -I ./libft/libft.h -I ./gnl/get_next_line.h
 
@@ -38,11 +39,11 @@ $(NAME): $(OBJ)
 	gcc $(FLAGS) -I ./mlx -I libft.a -c $< -o $@
 clean:
 	rm -rf $(OBJ)
-	make clean -C $(LIBFT)
-	make clean -C $(MLX)
+	# make clean -C $(LIBFT)
+	# make clean -C $(MLX)
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf libmlx.dylib
-	rm -rf libft.a
-	make fclean -C $(LIBFT)
+	# rm -rf libmlx.dylib
+	# rm -rf libft.a
+	# make fclean -C $(LIBFT)
 re: fclean all

@@ -2,7 +2,8 @@
 #define FRACTOL_H
 
 #include <unistd.h>
-#include "./minilibx_opengl_20191021/mlx.h"
+// #include "./minilibx_opengl_20191021/mlx.h"
+#include "./mlx/mlx.h"
 #include "./libft/libft.h"
 #include "./gnl/get_next_line.h"
 #include <math.h>
@@ -19,14 +20,24 @@ typedef struct	s_data {
 	int		endian;
 	int		height;
 	int		width;
+	int		zoom;
 }				t_data;
 
 typedef struct s_fractol {
+	double pr;
+	double pi;
+	double new_re;
+	double old_re;
+	double new_im;
+	double old_im;
+	double zoom;
+	double move_x;
+	double move_y;
 
 }				t_fractol;
 
 typedef struct   s_all {
-    t_data      *data;
+    t_data      data;
 	t_fractol 	fractol;
 	char		*type_fractol;
 }               t_all;
@@ -36,5 +47,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void    which_fractol(t_all *all);
 void       julia(t_all *all);
 void    mandelbrot(t_all *all);
+int      close_window(int keycode, t_data *data);
+void        exit_program(char *str);
+void		set_structs(t_all *all);
 
 #endif

@@ -12,7 +12,7 @@ void    which_fractol(t_all *all)
 	// 	{
 	// 		all->type_fractol = ft_strdup(line);
 	// 		free(line);
-	// 		// julia(all);
+			// julia(all);
 	// 		break ;
 	// 	}
 	// 	else if (ft_strncmp(line, "mandelbrot", ft_strlen(line)) == 0 && ft_strlen(line) == 10)
