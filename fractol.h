@@ -21,6 +21,7 @@ typedef struct	s_data {
 	int		height;
 	int		width;
 	int		zoom;
+	char 	*str;
 }				t_data;
 
 typedef struct s_fractol {
@@ -33,6 +34,12 @@ typedef struct s_fractol {
 	double zoom;
 	double move_x;
 	double move_y;
+	int		diff_dist_y;
+	int		diff_dist_x;
+	int		new_mouse_x;
+	int		new_mouse_y;
+	int		old_mouse_x;
+	int		old_mouse_y;
 	int	r;
 	int g;
 	int b;
@@ -51,9 +58,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void    which_fractol(t_all *all);
 void       julia(t_all *all);
 void    mandelbrot(t_all *all);
-int      close_window(int keycode, t_data *data);
+int      close_window(int keycode, t_all *all);
 void        exit_program(char *str);
 void		set_structs(t_all *all);
+int 	mouse_press(int keycode, int x, int y, t_all *all);
 
 
 ////

@@ -1,20 +1,33 @@
 #include "fractol.h"
 
-int 	mouse_press(int keycode, t_data *data)
+int 	mouse_press(int keycode, int x, int y, t_all *all)
 {
+	all->fractol.new_mouse_x = x;
+	all->fractol.new_mouse_y = y;
 	printf("%d\n", keycode);
-	// if (keycode == 4)
-	// 	data->zoom = 1;
-	// else if (keycode == 5)
-	// 	data->zoom = 2;
+	// printf("keycode = %d x = %d y = %d\n", keycode, x , y);
+	if (keycode == 4)
+		all->data.zoom = 1;
+	else if (keycode == 5)
+		all->data.zoom = 2;
+	else
+		all->data.zoom = 0;
+	(void)keycode;
 	return(0);
 }
 
-int      close_window(int keycode, t_data *data)
+int		mouse_release(int keycode, int x, int y, t_all *all)
+{
+	all->data.zoom = 0;
+	return(0);
+}
+
+int      close_window(int keycode, t_all *all)
 {
 	if (keycode == 53)
 	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
+		// all->data.zoom = 1;
+		mlx_destroy_window(all->data.mlx, all->data.mlx_win);
 		exit_program("It was very fun have a fractolic time!\n");
 	}
 	return (0);
@@ -23,14 +36,16 @@ int      close_window(int keycode, t_data *data)
 int		fractol_loop(t_all *all)
 {
 	which_fractol(all);
+	
 	mlx_put_image_to_window(all->data.mlx, all->data.mlx_win, all->data.img, 0, 0);
 	return (0);
 }
 
 int		main_loop(t_all *all)
 {
-	mlx_hook(all->data.mlx_win, 2, 1L<<0, close_window, &all->data);
-	mlx_hook(all->data.mlx_win, 4, 0, mouse_press, &all->data);
+	mlx_hook(all->data.mlx_win, 2, 1l<<0, close_window, all);
+	mlx_hook(all->data.mlx_win, 4, 0, mouse_press, all);
+	mlx_hook(all->data.mlx_win, 5, 0, mouse_release, all);
 	mlx_loop(all->data.mlx);
 	return (0);
 }

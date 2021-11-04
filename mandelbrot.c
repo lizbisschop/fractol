@@ -4,7 +4,7 @@ void		mandelbrot(t_all *all)
 {
 	double pr, pi;
 	double new_re, new_im, old_re, old_im;
-	// double zoom = 1, move_x = -0.5, move_y = 0;
+	// double all->fractol.zoom = 1, move_x = -0.5, move_y = 0;
 	int		max_iterations = 300;
 	int i;
 	int x;
@@ -16,16 +16,40 @@ void		mandelbrot(t_all *all)
 	int color;
 
 	y = 0;
-	// if (all->data.zoom == 1)
+	// all->fractol.diff_dist_y = (all->fractol.new_mouse_y - all->fractol.old_mouse_y) * 0.0003;
+	// if (all->fractol.diff_dist_y < 0)
+	// 	all->fractol.diff_dist_y = all->fractol.diff_dist_y * -1;
+	// all->fractol.diff_dist_x = (all->fractol.new_mouse_x -all->fractol.old_mouse_x) * 0.0003;
+	// if (all->fractol.diff_dist_x < 0)
+	// 	all->fractol.diff_dist_x = all->fractol.diff_dist_x * -1;
+	if (all->data.zoom == 1)
+	{
+		printf("hello\n");
+		all->fractol.zoom *= pow(1.001, 40); 
+	}
+	else if (all->data.zoom == 2)
+		all->fractol.zoom /= pow(1.001, 40); 
+	// if (all->fractol.new_mouse_x < all->fractol.old_mouse_x && all->fractol.new_mouse_y < all->fractol.old_mouse_y)
 	// {
-	// 	printf("keycode = 4\n");
-		// all->fractol.zoom *= pow(1.001, 40); 
+	// 	all->fractol.move_y += all->fractol.diff_dist_y * 40 / all->fractol.zoom;
+	// 	all->fractol.move_x -= all->fractol.diff_dist_x * 40 / all->fractol.zoom; 
 	// }
-	// else if (all->data.zoom == 2)
+	// else if (all->fractol.new_mouse_x > all->fractol.old_mouse_x && all->fractol.new_mouse_y < all->fractol.old_mouse_y)
 	// {
-	// 	printf("keycode = 5\n");
-	// 	all->fractol.zoom /= pow(1.001, 40); 
+	// 	all->fractol.move_y += all->fractol.diff_dist_y * 40 / all->fractol.zoom;
+	// 	all->fractol.move_x += all->fractol.diff_dist_x * 40 / all->fractol.zoom; 
 	// }
+	// else if (all->fractol.new_mouse_x > all->fractol.old_mouse_x && all->fractol.new_mouse_y > all->fractol.old_mouse_y)
+	// {
+	// 	all->fractol.move_y -= all->fractol.diff_dist_y * 40 / all->fractol.zoom;
+	// 	all->fractol.move_x += all->fractol.diff_dist_x * 40 / all->fractol.zoom; 
+	// }
+	// else if (all->fractol.new_mouse_x < all->fractol.old_mouse_x && all->fractol.new_mouse_y > all->fractol.old_mouse_y)
+	// {
+	// 	all->fractol.move_y -= all->fractol.diff_dist_y * 40 / all->fractol.zoom;
+	// 	all->fractol.move_x -= all->fractol.diff_dist_x * 40 / all->fractol.zoom; 
+	// }
+	
 	while (y < all->data.height)
 	{
 		x = 0;
@@ -47,7 +71,7 @@ void		mandelbrot(t_all *all)
 				i++;
 			}
 			// printf("%f %f\n", all->fractol.new_re, all->fractol.new_im);
-			color = create_trgb(i % 256, 255, 255 * (i < 500));
+			// color = create_trgb(i % 256, 255, 255 * (i < 300));
 			// color = HSVtoRGB(rgb_to_hsv(i % 256, 255, 255 * (i < max_iterations)));
 			// HSVtoRGB(i % 256, 255, 255 * (i  < max_iterations), all);
 			// color = create_trgb(all->fractol.r, all->fractol.g, all->fractol.b);

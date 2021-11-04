@@ -17,8 +17,17 @@ void       julia(t_all *all)
     y = 0;
     c_re = -0.7;
     c_im = 0.27015;
-    // while (1)
-    // {
+
+	if (all->data.zoom == 1)
+	{
+		printf("keycode = 4\n");
+		zoom *= pow(1.001, 40); 
+	}
+	else if (all->data.zoom == 2)
+	{
+		printf("keycode = 5\n");
+		zoom /= pow(1.001, 40); 
+	}
         mlx_hook(all->data.mlx_win, 2, 1L<<0, close_window, &all->data);
         while (y < all->data.height)
         {
@@ -36,9 +45,9 @@ void       julia(t_all *all)
                     new_im = 2 * old_re * old_im + c_im;
                     i++;
                 }
-                // r = 9 * (1 - i) * pow(i, 3) * 255;
-                // g = 15 * pow((1 - i), 2) * pow(i, 2) * 255;
-                // b = 8.5 * pow((1 - i), 3) * i * 255;
+                r = 9 * (1 - i) * pow(i, 3) * 255;
+                g = 15 * pow((1 - i), 2) * pow(i, 2) * 255;
+                b = 8.5 * pow((1 - i), 3) * i * 255;
                 //very colorfull shite
                 r = (114-151) * (i - 50) + 151;
 			    g = (127-206) * (i  - 50) + 206;
