@@ -1,5 +1,22 @@
 #include "fractol.h"
 
+void	clear_window(t_all *all)
+{
+	int x = 0;
+	int y = 0;
+
+
+	while (y < all->data.height)
+	{
+		while (x < all->data.width)
+		{
+			my_mlx_pixel_put(&all->data, x, y, 0);
+			x++;
+		}
+		y++;
+	}
+}
+
 int 	mouse_press(int keycode, int x, int y, t_all *all)
 {
 	all->fractol.new_mouse_x = x;
@@ -18,6 +35,7 @@ int 	mouse_press(int keycode, int x, int y, t_all *all)
 
 int		mouse_release(int keycode, int x, int y, t_all *all)
 {
+	// printf("%d key realease\n", all->data.zoom);
 	all->data.zoom = 0;
 	return(0);
 }
@@ -36,7 +54,6 @@ int      close_window(int keycode, t_all *all)
 int		fractol_loop(t_all *all)
 {
 	which_fractol(all);
-	
 	mlx_put_image_to_window(all->data.mlx, all->data.mlx_win, all->data.img, 0, 0);
 	return (0);
 }
