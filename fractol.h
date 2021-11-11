@@ -10,6 +10,12 @@
 //REMOVE!!!!!!!!!!!!!!!!!!!!!!
 #include <stdio.h>
 
+#define ESC 53
+#define W_KEY 13
+#define A_KEY 0
+#define S_KEY 1
+#define D_KEY 2
+
 typedef struct	s_data {
     void    *mlx;
     void    *mlx_win;
@@ -62,6 +68,7 @@ int      close_window(int keycode, t_all *all);
 void        exit_program(char *str);
 void		set_structs(t_all *all);
 int 	mouse_press(int keycode, int x, int y, t_all *all);
+void		colors(t_all *all, int i, int x, int y);
 
 
 ////

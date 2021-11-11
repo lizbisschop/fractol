@@ -16,4 +16,7 @@ void        set_structs(t_all *all)
    all->fractol.old_mouse_y = all->data.height / 2;
    all->fractol.diff_dist_x = 0;
    all->fractol.diff_dist_y = 0;
+   all->fractol.r = 20;
+	all->fractol.g = 225;
+	all->fractol.b = 0;
 }

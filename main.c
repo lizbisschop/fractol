@@ -42,12 +42,20 @@ int		mouse_release(int keycode, int x, int y, t_all *all)
 
 int      close_window(int keycode, t_all *all)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
 	{
 		// all->data.zoom = 1;
 		mlx_destroy_window(all->data.mlx, all->data.mlx_win);
 		exit_program("It was very fun have a fractolic time!\n");
 	}
+	else if (keycode == W_KEY)
+		all->fractol.move_y -= 0.3 * 1 / all->fractol.zoom; 
+	else if (keycode == S_KEY)
+		all->fractol.move_y += 0.3 * 1 / all->fractol.zoom;
+	else if (keycode == A_KEY)
+		all->fractol.move_x -= 0.3 * 1 / all->fractol.zoom;
+	else if (keycode == D_KEY)
+		all->fractol.move_x += 0.3 * 1 / all->fractol.zoom;
 	return (0);
 }
 
@@ -58,11 +66,19 @@ int		fractol_loop(t_all *all)
 	return (0);
 }
 
+int		close_screen(t_all *all)
+{
+	printf("Window has been closed goodbye\n");
+	exit(0);
+	return (0);
+}
+
 int		main_loop(t_all *all)
 {
 	mlx_hook(all->data.mlx_win, 2, 1l<<0, close_window, all);
 	mlx_hook(all->data.mlx_win, 4, 0, mouse_press, all);
 	mlx_hook(all->data.mlx_win, 5, 0, mouse_release, all);
+	mlx_hook(all->data.mlx_win, 17, 1l << 17, close_screen, all);
 	mlx_loop(all->data.mlx);
 	return (0);
 }
