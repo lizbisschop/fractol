@@ -2,8 +2,6 @@
 
 void       julia(t_all *all)
 {
-    double c_re, c_im;
-    double new_re, new_im, old_re, old_im;
     int    color;
     int     max_iterations;
     int     x;
@@ -14,8 +12,8 @@ void       julia(t_all *all)
     int     b;
 
     y = 0;
-    c_re = -0.7;
-    c_im = 0.27015;
+    all->fractol.c_re = -.79;
+    all->fractol.c_im = 0.15;
     max_iterations = 300; 
 
 	if (all->data.zoom == 1)
@@ -28,14 +26,14 @@ void       julia(t_all *all)
         while (x < all->data.width)
         {
             i = 0;
-            new_re = 1.5 * (x - all->data.width / 2) / (0.5 * all->fractol.zoom * all->data.width) + all->fractol.move_x;
-            new_im = (y - all->data.height / 2) / (0.5 * all->fractol.zoom * all->data.height) + all->fractol.move_y;
-            while (i < max_iterations && (new_re * new_re + old_re * old_re < 4))
+            all->fractol.new_re = 1.5 * (x - all->data.width / 2) / (0.5 * all->fractol.zoom * all->data.width) + all->fractol.move_x;
+            all->fractol.new_im = (y - all->data.height / 2) / (0.5 * all->fractol.zoom * all->data.height) + all->fractol.move_y;
+            while (i < max_iterations && (all->fractol.new_re * all->fractol.new_re + all->fractol.old_re * all->fractol.old_re < 4))
             {
-                old_re = new_re;
-                old_im = new_im;
-                new_re = old_re * old_re - old_im * old_im + c_re;
-                new_im = 2 * old_re * old_im + c_im;
+                all->fractol.old_re = all->fractol.new_re;
+                all->fractol.old_im = all->fractol.new_im;
+                all->fractol.new_re = all->fractol.old_re * all->fractol.old_re - all->fractol.old_im * all->fractol.old_im + all->fractol.c_re;
+                all->fractol.new_im = 2 * all->fractol.old_re * all->fractol.old_im + all->fractol.c_im;
                 i++;
             }
             // r = 9 * (1 - i) * pow(i, 3) * 255;
@@ -56,4 +54,5 @@ void       julia(t_all *all)
         }
         y++;
     }
+    all->data.zoom = 0;
 }

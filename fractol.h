@@ -40,6 +40,8 @@ typedef struct s_fractol {
 	double zoom;
 	double move_x;
 	double move_y;
+	double	c_re;
+	double	c_im;
 	int		diff_dist_y;
 	int		diff_dist_x;
 	int		new_mouse_x;
@@ -49,21 +51,29 @@ typedef struct s_fractol {
 	int	r;
 	int g;
 	int b;
-
-
 }				t_fractol;
+
+typedef struct	s_julia {
+	double		c_re;
+	double 		c_im;
+	double		new_re;
+	double		old_re;
+	double		new_im;
+	double		old_im;
+}				t_julia;
 
 typedef struct   s_all {
     t_data      data;
 	t_fractol 	fractol;
-	char		*type_fractol;
+	t_julia		julia;
+	char		*type;
 }               t_all;
 
 int		create_trgb(int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void    which_fractol(t_all *all);
 void       julia(t_all *all);
-void    mandelbrot(t_all *all);
+int	    mandelbrot(t_all *all);
 int      close_window(int keycode, t_all *all);
 void        exit_program(char *str);
 void		set_structs(t_all *all);

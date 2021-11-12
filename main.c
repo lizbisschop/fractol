@@ -87,6 +87,15 @@ int     main(int argc, char **argv)
 {
 	t_all	all;
 
+	if (argc < 2)
+	{
+		printf("please enter a right parameter:\n-Julia\n-Mandlebrot\n");
+		return (0);
+	}
+	all.type = ft_strdup(argv[1]);
+
+
+
 	all.data.height = 1000;
 	all.data.width =  1000;
 	all.data.mlx = mlx_init();
@@ -98,7 +107,7 @@ int     main(int argc, char **argv)
 	main_loop(&all);
 
 	// mlx_put_image_to_window(all.data.mlx, all.data.mlx_win, all.data.img, 0, 0);
-	(void)argc;
-	(void)argv;
+	// (void)argc;
+	// (void)argv;
 	return (0);
 }

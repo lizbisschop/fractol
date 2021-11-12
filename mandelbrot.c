@@ -16,7 +16,7 @@ void		colors(t_all *all, int i, int x, int y)
 		my_mlx_pixel_put(&all->data, x, y, 0x000000);
 }
 
-void		mandelbrot(t_all *all)
+int		mandelbrot(t_all *all)
 {
 	double pr, pi;
 	double new_re, new_im, old_re, old_im;
@@ -58,7 +58,6 @@ void		mandelbrot(t_all *all)
 	// 	else
 	// 		all->fractol.move_y -= 0.3 * 0.5 / all->fractol.zoom + 0.2;
 	// }
-	
 	while (y < all->data.height)
 	{
 		x = 0;
@@ -113,6 +112,7 @@ void		mandelbrot(t_all *all)
 	all->fractol.old_mouse_x = all->fractol.new_mouse_x;
 	all->fractol.old_mouse_y = all->fractol.new_mouse_y;
 	all->data.zoom = 0;
+	return (0);
 }
 
 // void		mandelbrot(t_all *all)
