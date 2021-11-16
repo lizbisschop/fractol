@@ -33,6 +33,7 @@ int		mandelbrot(t_all *all)
 	int color;
 
 	y = 0;
+	// printf("Drawing madelbrot\n");
 	// printf(" new x = %d old x = %d new y = %d old y = %d\n", all->fractol.new_mouse_x, all->fractol.old_mouse_x, all->fractol.new_mouse_y, all->fractol.old_mouse_y);
 	// all->fractol.diff_dist_y = (all->fractol.new_mouse_y - all->fractol.old_mouse_y) * 0.0003;
 	// if (all->fractol.diff_dist_y < 0)
@@ -85,9 +86,9 @@ int		mandelbrot(t_all *all)
 			// HSVtoRGB(i % 256, 255, 255 * (i  < max_iterations), all);
 			// color = create_trgb(all->fractol.r, all->fractol.g, all->fractol.b);
 			// my_mlx_pixel_put(&all->data, x, y, color);
-			r = 9 * (1 - i) * pow(i, 3) * 255;
-			g = 15 * pow((1 - i), 2) * pow(i, 2) * 255;
-			b = 8.5 * pow((1 - i), 3) * i * 255;
+			// r = 9 * (1 - i) * pow(i, 3) * 255;
+			// g = 15 * pow((1 - i), 2) * pow(i, 2) * 255;
+			// b = 8.5 * pow((1 - i), 3) * i * 255;
 
 			//very colorful shite
 			// r = (114-151) * (i - 900) + 151;
@@ -96,15 +97,15 @@ int		mandelbrot(t_all *all)
 			// color = (i) | (i << 8) | (i << 16);
 
 			//best till now
-			// colors(all, i, x, y);
+			colors(all, i, x, y);
 
-			color = create_trgb(i * i, i * 100 / 300 + 55, 75);
+			// color = create_trgb(i * i, i * 100 / 300 + 55, 75);
 			// printf("x = %d,  y = %d color = %d\n", x, y, i);
 			// if (i == 90)
 			// 	color = 0x000000;
 			// color = create_trgb(r, g, b);
 			// color = create_trgb(i % 256, 255, 255 * (i < 500));
-			my_mlx_pixel_put(&all->data, x, y, color);
+			// my_mlx_pixel_put(&all->data, x, y, color);
 			x++;
 		}
 		y++;

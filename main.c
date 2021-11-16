@@ -56,6 +56,8 @@ int      close_window(int keycode, t_all *all)
 		all->fractol.move_x -= 0.3 * 1 / all->fractol.zoom;
 	else if (keycode == D_KEY)
 		all->fractol.move_x += 0.3 * 1 / all->fractol.zoom;
+	get_next_line(0, &all->fractol.color);
+	printf("%s\n", all->fractol.color);
 	return (0);
 }
 
@@ -87,13 +89,13 @@ int     main(int argc, char **argv)
 {
 	t_all	all;
 
-	if (argc < 2)
+	if (argc < 3)
 	{
-		printf("please enter a right parameter:\n-Julia\n-Mandlebrot\n");
+		printf("Please enter a right paramater: [kind fractol] [color]\n");
 		return (0);
 	}
 	all.type = ft_strdup(argv[1]);
-
+	all.fractol.color = ft_strdup(argv[2]);
 
 
 	all.data.height = 1000;

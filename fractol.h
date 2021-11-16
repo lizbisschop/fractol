@@ -51,6 +51,7 @@ typedef struct s_fractol {
 	int	r;
 	int g;
 	int b;
+	char *color;
 }				t_fractol;
 
 typedef struct	s_julia {

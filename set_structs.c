@@ -11,7 +11,7 @@ void        set_structs(t_all *all)
    all->fractol.zoom = 1;
    all->fractol.move_x = -0.5;
    all->fractol.move_y = 0;
-   all->data.zoom = 0;
+   all->data.zoom = 1;
    all->fractol.old_mouse_x = all->data.width / 2;
    all->fractol.old_mouse_y = all->data.height / 2;
    all->fractol.diff_dist_x = 0;
